@@ -27,6 +27,8 @@ public class InputValidator {
 
     public static void validateWinningNumbers(String input) {
 
+        validateNotNullAndNotEmpty(input);
+
         String[] numbers = input.split(",");
         validateWinningNumbersCount(numbers);
 
@@ -70,11 +72,6 @@ public class InputValidator {
     }
 
     private static int validateNumeric(String input) {
-
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어 있습니다.");
-        }
-
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
@@ -85,6 +82,12 @@ public class InputValidator {
     private static void validateNumberRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static void validateNotNullAndNotEmpty(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력 값이 비어 있습니다.");
         }
     }
 }
