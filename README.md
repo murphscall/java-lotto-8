@@ -226,4 +226,5 @@ public class Lotto {
 - Lotto(기존 제공 클래스)
 - LottoGenerator
 - LottoResultCalculator
+- LottoController
 - OutputView
