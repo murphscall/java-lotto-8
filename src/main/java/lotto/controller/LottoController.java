@@ -6,6 +6,7 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResultCalculator;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -20,13 +21,13 @@ public class LottoController {
 
         List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmount);
 
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
+        OutputView.printLottos(lottos);
 
         WinningLotto winningLotto = readWinningLottoWithRetry();
 
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(lottos, winningLotto);
+
+        OutputView.printResult(lottoResultCalculator, purchaseAmount);
     }
 
     private int readPurchaseAmountWithRetry() {
