@@ -34,4 +34,8 @@ public class OutputView {
         sb.append(String.format("총 수익률은 %.1f%%입니다.", profitRate));
         System.out.println(sb);
     }
+
+    public static void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

@@ -17,39 +17,21 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = readPurchaseAmountWithRetry();
+        int purchaseAmount = InputView.inputPurchaseAmount();
 
         List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmount);
 
         OutputView.printLottos(lottos);
 
-        WinningLotto winningLotto = readWinningLottoWithRetry();
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+
+        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(lottos, winningLotto);
 
         OutputView.printResult(lottoResultCalculator, purchaseAmount);
-    }
-
-    private int readPurchaseAmountWithRetry() {
-        while (true) {
-            try {
-                return InputView.inputPurchaseAmount();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private WinningLotto readWinningLottoWithRetry() {
-        while (true) {
-            try {
-                List<Integer> winningNumbers = InputView.inputWinningNumbers();
-                int bonusNumber = InputView.inputBonusNumber(winningNumbers);
-                return new WinningLotto(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
 }

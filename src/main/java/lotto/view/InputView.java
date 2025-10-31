@@ -8,31 +8,53 @@ import lotto.validator.InputValidator;
 public class InputView {
 
     public static int inputPurchaseAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
-        String input = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                String input = Console.readLine();
 
-        InputValidator.validatePurchaseAmount(input);
+                InputValidator.validatePurchaseAmount(input);
 
-        return Integer.parseInt(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
+        }
+
     }
 
     public static List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
 
-        InputValidator.validateWinningNumbers(input);
+                InputValidator.validateWinningNumbers(input);
 
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+                return Arrays.stream(input.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .toList();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
+        }
+
     }
 
     public static int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
 
-        InputValidator.validateBonusNumbers(winningNumbers, input);
-        return Integer.parseInt(input);
+                InputValidator.validateBonusNumbers(winningNumbers, input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e);
+            }
+
+        }
+
     }
 }
