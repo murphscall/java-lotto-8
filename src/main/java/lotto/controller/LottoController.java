@@ -12,7 +12,7 @@ public class LottoController {
 
     private final LottoGenerator lottoGenerator;
 
-    public LottoController(LottoGenerator lottoGenerator) {
+    public LottoController() {
         this.lottoGenerator = new LottoGenerator();
     }
 

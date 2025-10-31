@@ -11,8 +11,8 @@ public class LottoGenerator {
     private static final int MAX_LOTTO_NUMBER = 45;
 
     public Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
-                LOTTO_NUMBER_COUNT);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                LOTTO_NUMBER_COUNT));
 
         Collections.sort(numbers);
         return new Lotto(numbers);
