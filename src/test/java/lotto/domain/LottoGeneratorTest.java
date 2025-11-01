@@ -37,13 +37,30 @@ class LottoGeneratorTest {
     }
 
     @Test
-    void 생성된_모든로또는_유효한_번호를_가진다() {
-        int purchaseAmout = 14000;
-        List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmout);
+    void 생성된_모든로또는_6개의_숫자를_가진다() {
+        int purchaseAmount = 14000;
+        List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmount);
+
+        assertThat(lottos).allMatch(lotto -> lotto.getNumbers().size() == 6);
+    }
+
+    @Test
+    void 생성된_모든로또는_1부터_45사이의_숫자를_가진다() {
+        int purchaseAmount = 14000;
+        List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmount);
 
         assertThat(lottos).allMatch(lotto ->
-                lotto.getNumbers().size() == 6 && lotto.getNumbers().stream().allMatch(n -> n >= 1 && n <= 45)
-                        && lotto.getNumbers().stream().distinct().count() == 6
+                lotto.getNumbers().stream().allMatch(n -> n >= 1 && n <= 45)
+        );
+    }
+
+    @Test
+    void 생성된_모든로또는_중복되지않는_6개의_숫자를_가진다() {
+        int purchaseAmount = 14000;
+        List<Lotto> lottos = lottoGenerator.generateMultipleLotto(purchaseAmount);
+
+        assertThat(lottos).allMatch(lotto ->
+                lotto.getNumbers().stream().distinct().count() == 6
         );
     }
 }

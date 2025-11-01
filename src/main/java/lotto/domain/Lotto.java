@@ -36,6 +36,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
-
-    // TODO: 추가 기능 구현
+    
 }

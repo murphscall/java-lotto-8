@@ -21,7 +21,7 @@ public class OutputView {
         Map<Rank, Integer> result = lottoResultCalculator.getResult();
         double profitRate = lottoResultCalculator.profitRate(purchaseAmount);
         StringBuilder sb = new StringBuilder();
-        sb.append("당첨 결과\n");
+        sb.append("당첨 통계\n");
         sb.append("---\n");
 
         for (Rank rank : Rank.values()) {
