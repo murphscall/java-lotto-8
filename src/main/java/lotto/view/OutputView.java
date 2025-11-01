@@ -31,7 +31,7 @@ public class OutputView {
             int count = result.get(rank);
             sb.append(String.format("%s - %d개%n", rank.getDescription(), count));
         }
-        sb.append(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        sb.append(String.format("총 수익률은 %.1f%%입니다.\n", profitRate));
         System.out.println(sb);
     }
 

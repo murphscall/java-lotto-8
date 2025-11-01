@@ -13,10 +13,8 @@ public class WinningLotto {
     }
 
     public Rank match(Lotto lotto) {
-        long matchCount = lotto.getNumbers().stream()
-                .filter(winningNumbers.getNumbers()::contains)
-                .count();
-        boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+        long matchCount = lotto.countMatchingNumbers(this.winningNumbers);
+        boolean hasBonus = lotto.containsBonus(bonusNumber);
 
         return Rank.valueOf((int) matchCount, hasBonus);
     }

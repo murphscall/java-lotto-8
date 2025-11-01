@@ -10,7 +10,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -18,13 +17,20 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-    }
-
-    private void validateDuplication(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
+    }
+
+    public long countMatchingNumbers(Lotto lotto) {
+        return numbers.stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean containsBonus(int number) {
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {

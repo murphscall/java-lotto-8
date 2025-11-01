@@ -1,20 +1,22 @@
 package lotto.validator;
 
+import static lotto.domain.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.domain.LottoConstant.LOTTO_PRICE;
+import static lotto.domain.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstant.MIN_LOTTO_NUMBER;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int WINNING_NUMBER_COUNT = 6;
 
     private InputValidator() {
     }
 
     public static void validatePurchaseAmount(String input) {
+        validateNotNullAndNotEmpty(input);
         int amount = validateNumeric(input);
         if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다.");
@@ -59,7 +61,7 @@ public class InputValidator {
     }
 
     private static void validateWinningNumbersCount(String[] numbers) {
-        if (numbers.length != WINNING_NUMBER_COUNT) {
+        if (numbers.length != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }

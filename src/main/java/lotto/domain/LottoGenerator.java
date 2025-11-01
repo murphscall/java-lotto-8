@@ -1,14 +1,16 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.domain.LottoConstant.LOTTO_PRICE;
+import static lotto.domain.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstant.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     public Lotto generate() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
@@ -19,7 +21,7 @@ public class LottoGenerator {
     }
 
     public List<Lotto> generateMultipleLotto(int purchaseAmount) {
-        int count = purchaseAmount / 1000;
+        int count = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
