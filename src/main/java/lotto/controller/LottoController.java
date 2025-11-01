@@ -14,8 +14,8 @@ public class LottoController {
 
     private final LottoGenerator lottoGenerator;
 
-    public LottoController() {
-        this.lottoGenerator = new LottoGenerator();
+    public LottoController(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void run() {
